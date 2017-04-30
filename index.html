@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script>
+        ~(function (desw) {
+            var winW=document.documentElement.clientWidth
+            document.documentElement.style.fontSize=winW/desw*100+'px'
+        })(640)
+    </script>
+</head>
+<body>
+<article class="main">
+    <div class="music">
+        <audio src="audio/beyond.mp3" preload="none" loop id="beyond">
+
+        </audio>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide1">
+          <div></div>
+            <img src="img1/swiper/3.png" alt="">
+            <img src="img1/swiper/4.png" alt="">
+            <img src="img1/swiper/5.png" alt="">
+            <span>我 心怀梦想 有态度</span>
+            <b></b>
+            <h2>· 刘园 ·</h2>
+            <i></i>
+        </div>
+            <div class="swiper-slide slide2">
+                <img src="img1/swiper/my.png" alt="">
+                <img src="img1/swiper/9.png" alt="">
+                <img src="img1/swiper/8.png" alt="">
+                <img src="img1/swiper/12.png" alt="">
+            </div>
+            <div class="swiper-slide slide3">
+                <h1>简历</h1>
+                <img src="img1/swiper/13.jpg" alt="">
+                <dl>
+                    <dt>
+                    <dd>爱好：代码</dd>
+                    <dd>姓名：刘园</dd>
+                    <dd>电话：15001371685</dd>
+                    <dd>邮箱：282869915@qq.com</dd>
+                    <dd>web</dd>
+                    <dd>地址：北京</dd>
+                    </dt>
+                </dl>
+                <img src="img1/swiper/14.png" alt="">
+            </div>
+            <div class="swiper-slide slide4">
+                <img src="img1/swiper/15.jpg" alt="" class="img1">
+                <img src="img1/swiper/16.png" alt="" class="img2">
+                <img src="img1/swiper/17.png" alt="" class="img3">
+                <div class="d1">
+                    <h3>专业技能</h3>
+                    <ul>
+                        <li>HTML:△△△△△</li>
+                        <li>CSS:△△△△</li>
+                        <li>JS:△△△△△</li>
+                        <li>ANGULAR:△△△△</li>
+                        <li>REACT:△△△△</li>
+                        <li>PS:△△△△</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="swiper-slide slide5">
+                <img src="img1/swiper/18.jpg" alt="" class="img1">
+                <span>北方工业大学</span>
+                <img src="img1/swiper/19.png" alt="" class="img2" id="img">
+                <div class="d2">
+                    <h3>学习和工作经验</h3>
+                    <ul>
+                        <li>学校：北方工业大学</li>
+                        <li>专业：机电一体化</li>
+                        <li>工作：北京七星集团</li>
+                        <li>项目：军工产品</li>
+                        <li>工作：山水文园</li>
+                        <li>项目：web开发</li>
+                    </ul>
+                </div>
+
+                <!--<img src="../img1/swiper/8.png" alt="">-->
+                <!--<img src="../img1/swiper/12.png" alt="">-->
+            </div>
+            <div class="swiper-slide slide6">
+                <h1>web前端开发攻城狮-刘园 个人简历</h1>
+                <b></b>
+                <p></p>
+            </div>
+        </div>
+    </div>
+        <!--</div>-->
+</article>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script>
+    var aImg=document.querySelector('.img3');
+    var aDiv=document.querySelector('.d1');
+    var oImg=document.querySelector('#img');
+    var oDiv=document.querySelector('.d2');
+    aImg.onclick=function () {
+        aDiv.style.display='block'
+    };
+    oImg.onclick=function () {
+        oDiv.style.display='block'
+    }
+    var mySwiper=new Swiper('.swiper-container',{
+        direction:'vertical',
+
+        loop:true,//循环模式，swiper会自己初始化
+        onTransitionEnd:function (swiper) {//滑动滑块结束时
+            var curIndex=swiper.activeIndex;//当前活动滑块得索引（当滑动结束时，当前显示的滑块成为活动滑块）
+            var slides=swiper.slides;//获得所有的滑块
+            //实现：当滑动结束时，给当前显示的滑块增加相应的ID名
+            [].forEach.call(slides,function (itme,index) {
+                itme.id='';
+                //对当前显示的滑块座判断
+                //如果是第一个滑块，增加的ID名是slides.length-2,如果是最后一个，增加ID名是page1,其他则是“page”+自己得索引
+                switch (curIndex){
+                    case slides.length-3:
+                        itme['id']='page'+(slides.length-3);
+                        break;
+                    case slides.length-1:
+                        itme['id']='page1';
+                        break;
+//                    case slides.length-2:
+//                        itme['id']='page2';
+//                        break;
+                    default:  itme['id']='page'+curIndex
+                }
+            })
+        },
+        effect:'coverflow'
+//        effect : 'cube',
+//        cube: {
+//            slideShadows: true,
+//            shadow: true,
+//            shadowOffset: 100,
+//            shadowScale: 10000
+//        }
+    })
+    var music = document.querySelector(".music");
+    var beyond = document.querySelector("#beyond");
+    window.setTimeout(function(){
+        beyond.play();
+        music.style.opacity = 1;
+        music.className = "music musicMove";
+    },1000)
+    /*音频文件播放 play() 停止 pause()
+     * 怎样判断音频文件是播放还是停止的beyond.paused true->停止 false->播放
+     * */
+    music.addEventListener("click",function(){
+        if(beyond.paused){
+            beyond.play();
+            music.className = "music musicMove";
+        }else{
+            beyond.pause();
+            music.className = "music";
+        }
+    },false)
+
+</script>
